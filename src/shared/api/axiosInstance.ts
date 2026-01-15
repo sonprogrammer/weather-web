@@ -11,7 +11,3 @@ export const axiosInstance = axios.create({
         lang: 'kr'
     }
 })
-
-
-// https://api.openweathermap.org/data/3.0/onecall?appid=ab7fe701b2b3f3423a7076eb0e67cf
-// bb&units=metric&lang=kr&lat=36.7899498&lon=127.0026769

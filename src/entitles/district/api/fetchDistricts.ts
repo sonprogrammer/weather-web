@@ -1,5 +1,5 @@
 import type { District } from "@/entitles/district/model/types";
-import { axiosInstance } from "@/shared/api/base";
+import { axiosInstance } from "@/shared/api/axiosInstance";
 import axios from "axios";
 import { REGION_COORDS } from "@/shared/constants/regionCoords";
 
@@ -24,7 +24,6 @@ export const fetchDistricts = async(): Promise<District[]> => {
 export const getCoordsByCity = async(cityName: string, fallback?: string) => {
     console.log('cityname fetchDistricts', cityName)
     if(REGION_COORDS[cityName]){
-        console.log('hi im here')
         return{
             lat:REGION_COORDS[cityName].lat,
             lon:REGION_COORDS[cityName].lon,
@@ -61,7 +60,6 @@ export const getCoordsByCity = async(cityName: string, fallback?: string) => {
         }
     }
 
-    // console.log('weather data from fetchDistricts', res)
     return null
 
 }

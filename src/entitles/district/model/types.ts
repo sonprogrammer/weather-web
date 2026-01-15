@@ -5,3 +5,11 @@ export interface District {
     fullName: string;
     id: string;
 }
+
+export interface Coords{
+    lat: number;
+    lon: number;
+    name: string;
+    isFallBack? : boolean;
+    originalName? : string;
+}
