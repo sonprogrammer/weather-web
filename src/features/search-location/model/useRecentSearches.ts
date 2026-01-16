@@ -5,7 +5,10 @@ import { useState, useEffect } from 'react'
 
 
 export const useRecentSearches = () => {
-    const [recentList, setRecentList] = useState<District[]>([]);
+    const [recentList, setRecentList] = useState<District[]>(() =>{
+        const saved = localStorage.getItem('history')
+        return saved ? JSON.parse(saved) : []
+    })
 
     useEffect(() => {
         localStorage.setItem('history', JSON.stringify(recentList));

@@ -18,6 +18,7 @@ export interface HourData {
 
 export interface WeatherState {
     name: string;
+    nickName?: string;
     currentTemp: number;
     isFallBack?: boolean; //도시에 대한 날씨 정보를 api가 못가져올시
     originalName?: string; //도시에 대한 날씨 정보를 api가 못가져올시
@@ -25,7 +26,7 @@ export interface WeatherState {
     minimumTemp: number;
     description: string;
     icon: string;
-    hourly: HourData[]
+    hourly: HourData[];
 }
 
 export interface ForecastData{

@@ -1,7 +1,29 @@
 import type { WeatherState } from "@/entitles/weather/model/types"
 import { HourlyForecast } from "@/features/search-location/ui/HourlyForecast"
+import { Star } from "lucide-react"
+import { Button } from "@/components/ui/button" 
+import { cn } from "@/lib/utils"
+import { useSavedStore } from "@/features/saved-location/model/useSavedStore"
 
-export const WeatherCard = ({ weather }: { weather: WeatherState }) => {
+export const WeatherCard = ({ weather,myLocationName }: { weather: WeatherState,myLocationName: string }) => {
+    const savedList = useSavedStore(state => state.savedList)
+    const toggleSave= useSavedStore(state => state.toggleSave)
+
+
+
+    const isSaved = savedList.some(s => s.name === (myLocationName || weather.name))
+
+    
+    const handleToggle = () => {
+        const weatherSave = {
+            ...weather,
+            name: myLocationName || weather.name
+        }
+        toggleSave(weatherSave)
+    }
+    console.log('weahter', weather)
+
+    
     return (
         <div className="weather-card mt-6 p-6 bg-white rounded-3xl shadow-sm border border-slate-100">
             {weather.isFallBack && (
@@ -11,7 +33,25 @@ export const WeatherCard = ({ weather }: { weather: WeatherState }) => {
             )}
             <div className="flex justify-between items-center">
                 <div>
-                    <h2 className="text-xl font-bold">{weather.name}</h2>
+                <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold">{`${myLocationName ? myLocationName : weather.name}`}</h2>
+
+                    <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 rounded-lg border"
+                            onClick={() =>handleToggle()}
+                        >
+                            <Star 
+                                className={cn(
+                                    "h-5 w-5 transition-colors",
+                                    isSaved ? "fill-yellow-400 text-yellow-400" : "text-slate-500"
+                                )} 
+                            />
+                            <span className="sr-only">즐겨찾기 추가</span>
+                        </Button>
+                        </div>
+                    
                     <div className="flex items-center gap-2">
                         <span className="text-4xl font-black">{weather.currentTemp}°</span>
                         <span className="text-slate-500">{weather.description}</span>
@@ -25,7 +65,7 @@ export const WeatherCard = ({ weather }: { weather: WeatherState }) => {
             </div>
 
             <div className="mt-8 -mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-slate-800">시간대별 예보</h3>
+                <h3 className="text-sm font-bold text-slate-800">3시간대별 예보</h3>
                 <span className="text-[11px] text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">
                     24시간 정보 제공
                 </span>

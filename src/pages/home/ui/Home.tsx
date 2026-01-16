@@ -1,9 +1,15 @@
+import { SavedList } from "@/widgets/saved/ui/SavedList";
 import { MyLocationWidget } from "@/widgets/weather/ui/MyLocationWidget";
 import { SearchWidget } from "@/widgets/weather/ui/SearchWidget";
+import dayjs from "dayjs";
+import 'dayjs/locale/ko'
 import { useState } from "react";
 
 export const Home = () => {
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
+
+    dayjs.locale('ko')
+    const today = dayjs().format('MMMM D일 (ddd)')
     return(
         <main className="relative h-screen bg-slate-50 overflow-y-auto">
 
@@ -11,6 +17,7 @@ export const Home = () => {
             <div className={`transition-all duration-500 ease-in-out ${isSearchOpen ? 'pr-[50%]' : 'pr-0'}`}>
                 <div className="max-w-md mx-auto pt-10 px-4">
                     <div className="flex justify-between items-center mb-6">
+                        <p className="text-blue-500 font-bold text-sm mb-1">{today}</p>
                         <h1 className="text-2xl font-black">Weather</h1>
 
                         <button 
@@ -23,6 +30,7 @@ export const Home = () => {
                     <MyLocationWidget />
                 </div>
             </div>
+            <SavedList />
 
             {/* //*검색위젯 */}
             <div 

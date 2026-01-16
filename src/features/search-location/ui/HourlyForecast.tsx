@@ -11,11 +11,8 @@ export const HourlyForecast = ({ hourly }: { hourly: HourData[] }) => {
             const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
 
             setShowLeftBtn(scrollLeft > 0)
-            console.log('scrollLeft', scrollLeft)
             
             setShowRightBtn(scrollLeft + clientWidth < scrollWidth - 1)
-            console.log('scrollWidth', scrollWidth)
-            console.log('clientWidth', clientWidth)
         }
     }
 

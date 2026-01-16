@@ -1,4 +1,4 @@
-import type { LocationCoords } from "@/entitles/location/types"
+import type { LocationCoords } from "@/entitles/location/model/types"
 
 export const checkLocation = (): Promise<LocationCoords> => {
     return new Promise((res, rej) => {

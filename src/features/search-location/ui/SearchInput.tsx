@@ -21,7 +21,7 @@ export const SearchInput = ({ query, setQuery, results, onCityClick }: SearchInp
             />
             {query === "" && recentList.length > 0 && (
                 <div className="mt-4">
-                    <h3 className="text-xs font-bold text-slate-400 mb-2 px-1">최근 검색 지역</h3>
+                    <h3 className="text-xs font-bold text-slate-400 mb-2 px-1">최근 검색 5개 지역</h3>
                     <div className="flex flex-wrap gap-2 px-1">
                         {recentList.map(city => (
                                 <button

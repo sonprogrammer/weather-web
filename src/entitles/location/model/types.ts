@@ -1,7 +1,4 @@
-export interface SearchedCity{
-    name: string;
-    fullName: string;
+export interface LocationCoords{
     lat: number;
     lon: number;
-    local_name: string;
 }

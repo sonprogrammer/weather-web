@@ -1,18 +1,25 @@
+import { useGetKCityName } from "@/entitles/location/model/useGetKCityName"
 import { useGetLocation } from "@/entitles/location/model/useGetLocation"
 import { useGetWeather } from "@/entitles/weather/model/useGetWeather"
 import { WeatherCard } from "@/features/search-location/ui/WeatherCard"
 
 export const MyLocationWidget = () => {
 
+    // * 현재 위치 위도 경도 가져오기
     const { data: myLocation, isPending:isLocationLoading, isError} = useGetLocation()
     console.log('myLocaion', myLocation)
 
+    //* 현재위치 한글 지명 가져오기
+    const {data: KCityName, isPending: isNameLoading} = useGetKCityName(myLocation?.lat, myLocation?.lon)
+    console.log('data from mylocaiotn', KCityName)
+    
+    // *현재 위치 날씨정보 가져오기
     const {data:weather, isPending: isWeatherLoading} = useGetWeather(
         myLocation ? { lat: myLocation.lat!, lon: myLocation.lon!, name: '현재위치' } : null
     )
     console.log('weather from widget', weather)
 
-    const isLoading = isLocationLoading || isWeatherLoading
+    const isLoading = isLocationLoading || isWeatherLoading || isNameLoading
     
     return (
         <section className="w-full">
@@ -36,9 +43,9 @@ export const MyLocationWidget = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        현재 위치 : {weather.cityKName}
+                        현재 위치 : {KCityName}
                     </div>
-                    <WeatherCard weather={weather} />
+                    <WeatherCard weather={weather} myLocationName={KCityName}/>
                 </div>
             ) : (
                 <div className="p-8 text-center text-slate-400 border-2 border-dashed rounded-3xl">
