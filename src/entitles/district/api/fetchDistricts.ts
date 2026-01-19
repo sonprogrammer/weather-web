@@ -22,7 +22,6 @@ export const fetchDistricts = async(): Promise<District[]> => {
 }
 
 export const getCoordsByCity = async(cityName: string, fallback?: string) => {
-    console.log('cityname fetchDistricts', cityName)
     if(REGION_COORDS[cityName]){
         return{
             lat:REGION_COORDS[cityName].lat,

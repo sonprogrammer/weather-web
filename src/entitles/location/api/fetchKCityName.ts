@@ -10,7 +10,6 @@ export const fetchKCityName = async (lat?: number,lon?: number) => {
             }
         })
 
-        console.log('res.data', res.data)
         return res.data[0].local_names.ko
         
     } catch (error) {

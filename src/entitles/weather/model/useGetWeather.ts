@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 
 
 export const useGetWeather = (coords: Coords | null) =>{
-    console.log('coords', coords)
     return useQuery({
         queryKey:['weather', coords?.lat, coords?.lon],
         queryFn: () => fetchWeather(coords!.lat, coords!.lon),
@@ -14,7 +13,6 @@ export const useGetWeather = (coords: Coords | null) =>{
         select: (data) => {
             const today = dayjs().format('YYYY-MM-DD')
 
-            console.log('data', data)
             // * 3시간 마다 날씨정보를 보여주는거니깐 8개 가져오기
             const hourly = data.dailyRes.list.slice(0, 8).map((data:ForecastData)=> {
                 const date = dayjs(data.dt * 1000)
@@ -44,7 +42,6 @@ export const useGetWeather = (coords: Coords | null) =>{
             const todayTemps = todayFilter.length > 0 
                 ? [data.currentRes.main.temp, ...todayFilter.map((t:ForecastData) => t.main.temp)]
                 : [data.currentRes.main.temp]
-            console.log('targetData', todayFilter)
 
             return{
                 name: coords!.name,

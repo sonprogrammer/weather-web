@@ -1,7 +1,6 @@
 import { axiosInstance } from "@/shared/api/axiosInstance"
 
 export const fetchWeather = async(lat:number, lon:number) => {
-    console.log('fetchWeather lat, lon', lat, lon)
     const [currentRes, dailyRes] = await Promise.all([
         axiosInstance.get('/weather', {
             params:{
@@ -17,7 +16,6 @@ export const fetchWeather = async(lat:number, lon:number) => {
         })
     ])
 
-    console.log('curren', currentRes.data)
  
     return{
         currentRes: currentRes.data,
