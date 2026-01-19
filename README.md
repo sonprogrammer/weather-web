@@ -1,11 +1,11 @@
-Weather-Web 
+# Weather-Web 
 
 <a href="https://realteethweather.netlify.app/" target="_blank">View WebSite</a>
 
 ## 프로젝트 실행 방법
 1. 저장소 클론
    ```
-   git clone your-repo-name.ig
+   git clone your-repo-name.git
    cd your-repo-name
    ```
 2. 의존성 설치
@@ -23,7 +23,7 @@ Weather-Web
 
 ## 구현 기능
 1. 현재 위치 및 검색 기반 실시간 날씨 제공
-   - OpenWeatherMap API 활용 : 현재 기온, 날씨 아이콘, 24시간 예보(3시간 간격, 총 8개 데이터)를 시각화합니다.
+   - OpenWeatherMap API 활용 : 현재 기온, 날씨 아이콘, 향후 24시간 기준 3시간 간격 예보(총 8개 데이터)를 시각화합니다.
    - API 제약 극복
      - 무료 플랜 특성상 최고/최저 기온 데이터를 제공하지 않아 현재 시점부터 당일 마지막 시간대까지의 데이터를 분석하여 실시간으로 최저/최고 온도를 산출하도록 구현하였습니다.
      - 또한 24시간의 날씨를 3시간 간격으로 보여줍니다.
