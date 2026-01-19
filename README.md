@@ -1,6 +1,8 @@
 # Weather-Web 
 
-<a href="https://realteethweather.netlify.app/" target="_blank" rel="noopener noreferrer">View WebSite</a>
+<!-- <a href="https://realteethweather.netlify.app/" target="_blank" rel="noopener noreferrer">View WebSite</a> -->
+[View Website](https://realteethweather.netlify.app/)
+
 
 ## 프로젝트 실행 방법
 1. 저장소 클론
