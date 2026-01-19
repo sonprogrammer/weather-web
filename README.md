@@ -1,6 +1,5 @@
 # Weather-Web 
 
-<!-- <a href="https://realteethweather.netlify.app/" target="_blank" rel="noopener noreferrer">View WebSite</a> -->
 [View Website](https://realteethweather.netlify.app/)
 
 
