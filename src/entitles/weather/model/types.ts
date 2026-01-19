@@ -9,6 +9,13 @@ export interface WeatherRes {
     }[]
 }
 
+export interface SavedCardProps {
+    weather: WeatherState;
+    actionSlot?: React.ReactNode;
+    onClick?: () => void;
+    updatedName?: (nickName: string) => void;
+}
+
 export interface HourData {
     time: string;
     temp: number;

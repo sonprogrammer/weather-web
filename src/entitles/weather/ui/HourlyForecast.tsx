@@ -66,7 +66,7 @@ export const HourlyForecast = ({ hourly }: { hourly: HourData[] }) => {
             >
                 {hourly.map((h, i) => (
                     <div key={i} className="flex flex-col items-center min-w-14 py-2">
-                        <span className={`text-[11px] whitespace-nowrap ${h.isTmw ? 'text-purple-500 font-bold' : 'text-slate-400 font-medium'}`}>
+                        <span className={`text-[12px] whitespace-nowrap ${h.isTmw ? 'text-purple-500 font-bold' : 'text-slate-400 font-medium'}`}>
                             {h.time === '0시' && h.isTmw ? '내일' : h.time}
                         </span>
                         <img

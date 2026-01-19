@@ -2,14 +2,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { WeatherCard } from "@/features/search-location/ui/WeatherCard";
+import { WeatherCard } from "@/entitles/weather/ui/WeatherCard";
+import { ToggleSavedButton } from "@/features/saved-location/ui/ToggleSavedBtn";
 
 export const WeatherDetail = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
     const weatherData = location.state.weatherData
-    console.log('weatherdata', weatherData)
 
     if (!weatherData) {
         return (
@@ -31,12 +31,12 @@ export const WeatherDetail = () => {
 
             <WeatherCard 
                 weather={weatherData} 
-                myLocationName={weatherData.nickName || weatherData.name} 
+                actionSlot={<ToggleSavedButton 
+                    weather={weatherData}
+                    locationName={weatherData.name}
+                />}
             />
             
-            <div className="mt-8">
-
-            </div>
         </main>
     )
 }

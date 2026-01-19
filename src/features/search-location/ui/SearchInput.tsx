@@ -1,68 +1,83 @@
-import type { District } from "@/entitles/district/model/types"
+
 import type { SearchInputProps } from "@/features/search-location/model/types"
 import { useRecentSearches } from "@/features/search-location/model/useRecentSearches"
+import { Search, X, Clock, MapPin } from "lucide-react"
+import { Input } from "@/components/ui/input"
 
 export const SearchInput = ({ query, setQuery, results, onCityClick }: SearchInputProps) => {
     const { recentList, addRecent, removeRecent } = useRecentSearches()
 
-    const handleHistoryClick = (city: District) => {
-        addRecent(city)
-        onCityClick(city)
-    }
 
     return (
         <div className="relative w-full p-2">
-            <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="국내 지역을 입력해 주세요."
-                className="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"
-            />
+            <div className="relative group">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                <Input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="국내 지역을 입력해 주세요."
+                    className="pl-10 h-12 bg-white rounded-xl border-slate-200 focus-visible:ring-blue-500 transition-all shadow-sm"
+                />
+            </div>
+
+            {/* //*최근 검색 5개지역 */}
             {query === "" && recentList.length > 0 && (
-                <div className="mt-4">
-                    <h3 className="text-xs font-bold text-slate-400 mb-2 px-1">최근 검색 5개 지역</h3>
-                    <div className="flex flex-wrap gap-2 px-1">
+                <div className="mt-5 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="flex items-center justify-between mb-3 px-1">
+                        <h3 className="text-xs font-bold text-slate-400">최근 검색 5개 지역</h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
                         {recentList.map(city => (
-                                <button
-                                    key={city.id}
-                                    onClick={() => onCityClick(city)}
-                                    className="px-3 py-1.5 flex gap-2 bg-slate-100 hover:bg-slate-200
-                                     text-slate-600 text-sm rounded-full transition-colors"
-                                >
+                            <div
+                                key={city.id}
+                                className="group flex items-center gap-2 px-3 py-1 bg-white border border-slate-100 hover:border-blue-200 hover:bg-blue-50 rounded-full transition-all cursor-pointer shadow-sm"
+                                onClick={() => onCityClick(city)}
+
+                            >
+                                <Clock className="h-3 w-3 text-slate-300 group-hover:text-blue-400" />
+                                <span className="text-sm font-medium text-slate-600">
                                     {city.fullName}
-                                    <span
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        removeRecent(city.id)
-                                    }}
-                                        className="hover:bg-slate-300 rounded-full w-5 h-5 cursor-pointer
-                                        transition-opacity text-slate-400 hover:text-slate-600"
-                                    >X</span>
-                                </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            removeRecent(city.id)
+                                        }}
+                                        className="ml-1 p-0.5 rounded-full hover:bg-slate-200 text-slate-300 hover:text-slate-600 transition-colors"
+                                    >
+                                        <X className="h-3 w-3" />
+                                    </button>
+                                </span>
+                            </div>
 
                         ))}
                     </div>
                 </div>
             )}
 
-
+            {/* //* 검색 내역 */}
             {query.trim() !== "" && (
-                <div className="absolute z-10 left-2 right-2 mt-2 bg-white border rounded-xl shadow-xl overflow-hidden">
+                <div className="space-y-2 animate-in fade-in slide-in-from-bottom-2">
                     {results.length > 0 ? (
-                        <ul>
+                        <div className="max-h-50 overflow-y-auto">
+                        <ul className="divide-y divide-slate-50">
                             {results.map(city => (
                                 <li
                                     key={city.id}
-                                    onClick={() => handleHistoryClick(city)} 
-                                    className="p-4 hover:bg-blue-50 cursor-pointer border-b last:border-none"
+                                    onClick={() => {
+                                        addRecent(city)
+                                        onCityClick(city)
+                                    }}
+                                    className="flex items-center gap-3 p-4 hover:bg-blue-50 cursor-pointer transition-colors group"
                                 >
-                                    📍 {city.fullName}
+                                    <MapPin className="h-4 w-4 text-slate-300 group-hover:text-blue-500" />
+                                    <span className="text-sm font-medium text-slate-700">{city.fullName}</span>
                                 </li>
                             ))}
                         </ul>
+                    </div>
                     ) : (
-                        <div className="p-6 text-center text-slate-500 text-sm">
+                        <div className="py-12 text-center">
                             결과가 없습니다.
                         </div>
                     )}
