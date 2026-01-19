@@ -36,6 +36,7 @@ export const Home = () => {
                             className="rounded-full shadow-md hover:scale-105 transition-transform bg-white border-slate-100"
                         >
                             <Search className="h-5 w-5 text-slate-500" />
+                            <span className="sr-only">지역 검색 버튼</span>
                         </Button>
                     </div>
                     <MyLocationWidget />
@@ -61,6 +62,7 @@ export const Home = () => {
                             className="mb-6 text-slate-400 w-10 h-10 transition-all hover:scale-105 rounded-full hover:bg-slate-300 hover:text-black font-medium"
                         >
                             <ArrowLeft className="h-6 w-6" />
+                            <span className="sr-only">뒤로가기 버튼</span>
                         </Button>
                         <div className="flex-1 overflow-y-auto px-3 pb-6">
                             {isSearchOpen && <SearchWidget />}

@@ -56,6 +56,7 @@ export const HourlyForecast = ({ hourly }: { hourly: HourData[] }) => {
                        border-slate-100 opacity-0 group-hover:opacity-100"
                 >
                     <span className="text-slate-600 text-xs">←</span>
+                    <span className="sr-only">전 시간으로 가기</span>
                 </button>
             )}
 
@@ -88,6 +89,7 @@ export const HourlyForecast = ({ hourly }: { hourly: HourData[] }) => {
                        border-slate-100 opacity-0 group-hover:opacity-100"
                 >
                     <span className="text-slate-600 text-xs">→</span>
+                    <span className="sr-only">앞 시간으로 가기</span>
                 </button>
             )}
         </div>

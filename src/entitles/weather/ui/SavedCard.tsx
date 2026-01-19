@@ -35,9 +35,11 @@ export const SavedCard = ({ weather, actionSlot, onClick, updatedName }: SavedCa
                                 />
                                 <button onClick={handleSave} className="text-green-500 cursor-pointer hover:scale-125">
                                     <Check size={16} />
+                                    <span className="sr-only">수정 확인 버튼</span>
                                 </button>
                                 <button onClick={() => setIsEditing(false)} className="text-red-400 cursor-pointer hover:scale-125">
                                     <X size={16} />
+                                    <span className="sr-only">수정 취소 버튼</span>
                                 </button>
                             </div>
                         ) : (
@@ -50,6 +52,7 @@ export const SavedCard = ({ weather, actionSlot, onClick, updatedName }: SavedCa
                                     className="p-2 -m-1 lg:opacity-0 lg:group-hover:opacity-100 bg-slate-50 lg:bg-transparent rounded-full lg:rounded-md transition-all active:bg-slate-200"
                                 >
                                     <Pencil size={12} className="text-slate-400" />
+                                    <span className="sr-only">수정 버튼</span>
                                 </button>
                             </div>
                         )}

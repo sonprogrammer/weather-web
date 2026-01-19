@@ -46,6 +46,7 @@ export const SearchInput = ({ query, setQuery, results, onCityClick }: SearchInp
                                         className="ml-1 p-0.5 rounded-full hover:bg-slate-200 text-slate-300 hover:text-slate-600 transition-colors"
                                     >
                                         <X className="h-3 w-3" />
+                                        <span className="sr-only">검색 내역에서 삭제 버튼</span>
                                     </button>
                                 </span>
                             </div>
