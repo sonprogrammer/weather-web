@@ -1,4 +1,4 @@
-# Weather-Web 
+# Weather-Web
 
 [View Website](https://realteethweather.netlify.app/)
 
